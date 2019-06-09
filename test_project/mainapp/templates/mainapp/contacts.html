@@ -3,8 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link rel="stylesheet" href="/static/css/style.css" type="text/css">
 </head>
 <body>
+    <ul class="menu">
+        <li><a href="{% url 'main' %}">Главная</a></li>
+        <li><a href="{% url 'products' %}">Продукты</a></li>
+        <li><a href="{% url 'contacts' %}">Контакты</a></li>
+    </ul>
+    <div class="clearboth"></div>
     <h1>Контакты</h1>
 </body>
 </html>

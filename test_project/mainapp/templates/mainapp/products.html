@@ -2,9 +2,16 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="/static/css/style.css" type="text/css">
     <title>Title</title>
 </head>
 <body>
+    <ul class="menu">
+        <li><a href="{% url 'main' %}">Главная</a></li>
+        <li><a href="{% url 'products' %}">Продукты</a></li>
+        <li><a href="{% url 'contacts' %}">Контакты</a></li>
+    </ul>
+    <div class="clearboth"></div>
     <h1>Продукты</h1>
 </body>
 </html>

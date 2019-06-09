@@ -7,13 +7,25 @@
 </head>
 <body>
 <ul class="menu">
-    <li><a href="">Главная</a></li>
-    <li><a href="products/">Продукты</a></li>
-    <li><a href="contacts/">Контакты</a></li>
+    <li><a href="{% url 'main' %}">Главная</a></li>
+    <li><a href="{% url 'products' %}">Продукты</a></li>
+    <li><a href="{% url 'contacts' %}">Контакты</a></li>
 </ul>
     <div class="clearboth"></div>
     <h1 class="header">Главная</h1>
-    <h2>Hi, {{ username }}!</h2>
-    <h3>I know U  {{ age }} years old guy!</h3>
+    {% if username == 'Vadim' %}
+        <h2>Hi, {{ username }}!</h2>
+    {% else %}
+        <h2>Who the hell are you?</h2>
+    {% endif %}
+    {% if age >= 30 %}
+        <h3>I know U  {{ age }} years old guy!</h3>
+        <p>Hello, old pall!</p>
+    {% else %}
+        <p>Still able to die young, huh</p>
+    {% endif %}
+    {% for i in array %}
+        <p>{{ i }}</p>
+    {% endfor %}
 </body>
 </html>
