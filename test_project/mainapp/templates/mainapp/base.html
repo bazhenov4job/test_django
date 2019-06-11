@@ -19,8 +19,10 @@
 
         {% include 'mainapp/includes/inc_menu.html'  %}
 
-        {% block content %}
+        <div class="clearboth"></div>
 
+        {% block content %}
+            <h2 class="header2">{{ title|title }}</h2>
         {% endblock %}
 
     </div>

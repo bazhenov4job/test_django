@@ -9,4 +9,4 @@ def products(request):
     return render(request, 'mainapp/products.html')
 
 def contacts(request):
-    return render(request, 'mainapp/contacts.html')
+    return render(request, 'mainapp/contacts.html', {'title': 'контакты'})
