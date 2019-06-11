@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    {% block title %}
+        <title>{{ title|title }}</title>
+    {% endblock %}
+
+    {% block css %}
+        <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    {% endblock %}
+
+    {% block js %}
+    {% endblock %}
+</head>
+<body>
+    <div class="container">
+
+        {% include 'mainapp/includes/inc_menu.html'  %}
+
+        <div class="clearboth"></div>
+
+        {% block content %}
+            <h2 class="header2">{{ title|title }}</h2>
+        {% endblock %}
+
+        {% block content2 %}
+
+        {% endblock %}
+    </div>
+
+    {% block footer %}
+    <div class="footer">
+
+    </div>
+    {% endblock %}
+</body>
+</html>
