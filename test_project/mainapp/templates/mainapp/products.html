@@ -7,11 +7,7 @@
     <link rel="stylesheet" href="{% static 'css/style.css' %}" type="text/css">
 </head>
 <body>
-<ul class="menu">
-    <li><a href="{% url 'main' %}">Главная</a></li>
-    <li><a href="{% url 'products' %}">Продукты</a></li>
-    <li><a href="{% url 'contacts' %}">Контакты</a></li>
-</ul>
+{% include 'mainapp/includes/inc_menu.html'  %}
 <div class="clearboth"></div>
     <h1 class="header2">Продукты</h1>
 </body>
