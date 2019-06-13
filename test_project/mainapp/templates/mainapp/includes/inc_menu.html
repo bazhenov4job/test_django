@@ -1,5 +1,5 @@
 <ul class="menu">
-    <li><a href="{% url 'main' %}">Главная</a></li>
-    <li><a href="{% url 'products' %}">Продукты</a></li>
-    <li><a href="{% url 'contacts' %}">Контакты</a></li>
+    {% for link in links_menu %}
+        <li><a href="{% url link.href %}"> {{ link.name|title }}</a></li>
+    {% endfor %}
 </ul>
