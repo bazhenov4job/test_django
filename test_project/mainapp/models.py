@@ -1,4 +1,4 @@
-from django.db import models
+from django.db import models          # import added to allow actions with data bases as follows
 
 # Create your models here.
 class ProductCategory(models.Model):

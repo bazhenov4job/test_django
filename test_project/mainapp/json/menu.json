@@ -4,7 +4,7 @@
     "name": "главная"
   },
   {
-    "href": "products",
+    "href": "products:index",
     "name": "продукты"
   },
   {
