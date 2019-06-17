@@ -1,1 +1,8 @@
 {% extends 'mainapp/base.html' %}
+{% block content2 %}
+{% for product in products %}
+    <h1>{{ product.name }}</h1>
+    <h2>{{ product.category.name }}</h2>
+    <h3>{{ product.description }}</h3>
+{% endfor %}
+{% endblock %}
