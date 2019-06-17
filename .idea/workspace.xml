@@ -1,13 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="a70e99c7-2634-4cdc-b16d-73b02d7a7ef1" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/test_project/authapp/forms.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test_project/authapp/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/test_project/authapp/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test_project/authapp/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/test_project/authapp/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test_project/test_project/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/test_project/test_project/urls.py" afterDir="false" />
-    </list>
+    <list default="true" id="a70e99c7-2634-4cdc-b16d-73b02d7a7ef1" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
