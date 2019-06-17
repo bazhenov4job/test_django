@@ -1,0 +1,13 @@
+{% extends 'authapp/base.html' %}
+{% load staticfiles %}
+
+{% block content %}
+    < form ... >
+    ...
+    </ form >
+    < button class = "btn btn-round form-control" >
+        < a href = "{% url 'auth:register' %}" class = "" >
+            зарегистрироваться
+        </ a >
+    </ button >
+{% endblock %}
