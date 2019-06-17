@@ -1,14 +1,8 @@
-{% load staticfiles %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-    <link rel="stylesheet" href="{% static 'css/style.css' %}" type="text/css">
-</head>
-<body>
-{% include 'mainapp/includes/inc_menu.html'  %}
-<div class="clearboth"></div>
-    <h1 class="header2">Продукты</h1>
-</body>
-</html>
+{% extends 'mainapp/base.html' %}
+{% block content2 %}
+{% for product in products %}
+    <h1>{{ product.name }}</h1>
+    <h2>{{ product.category.name }}</h2>
+    <h3>{{ product.description }}</h3>
+{% endfor %}
+{% endblock %}
