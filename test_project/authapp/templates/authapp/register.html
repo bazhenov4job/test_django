@@ -2,12 +2,13 @@
 {% load staticfiles %}
 
 {% block content %}
-    <form ...>
-    ...
+    <form class="form-horizantal" method="post">
+        {% csrf_token %}
+        <!--Далее идёт функция as_p, которая развернёт фрму регистрации в соответствии с
+         шаблоном объекта form, который иы создали в forms.py, прокинули во views и, обработав передали
+         сюда, в .html файл.-->
+        {{ form.as_p }}
+        <br>
+        <input class="form-control" type="submit" >
     </form>
-    <button class = "btn btn-round form-control">
-        <a href = "{% url 'auth:register' %}" class = "">
-            зарегистрироваться
-        </a>
-    </button>
 {% endblock %}
