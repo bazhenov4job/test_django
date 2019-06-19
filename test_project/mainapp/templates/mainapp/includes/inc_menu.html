@@ -1,5 +1,7 @@
-<ul class="menu">
+<ul class="menu" xmlns:auth="http://www.w3.org/1999/xhtml">
     {% for link in links_menu %}
         <li><a href="{% url link.href %}"> {{ link.name|title }}</a></li>
     {% endfor %}
 </ul>
+<div class="clearboth"></div>
+<a class="authorise" href="{% url 'auth:login' %}">Авторизация</a>

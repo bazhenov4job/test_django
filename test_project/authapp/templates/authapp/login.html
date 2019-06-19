@@ -2,11 +2,11 @@
 {% load staticfiles %}
 
 {% block content %}
-    <form class = "form-horizontal" action = "{% url 'auth:login' %}" method = "post">
+    <form class="form-horizontal" action={% url "auth:login" %} method="POST">
         {% csrf_token %}
-        {{ login_form.as_p }}
-        <br>
-        <input class = "form-control" type = "submit" value = "войти">
+        <input type="text" name="username" placeholder="Логин"><br>
+        <input type="password" name="password" placeholder="Пароль"><br>
+        <input type="submit">
     </form>
 
 {% endblock %}
