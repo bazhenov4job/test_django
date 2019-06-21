@@ -1,0 +1,10 @@
+<h3 style="margin-left: 40px;">Категории</h3>
+{% for category in categories %}
+    <a style="margin-left: 30px;"href="{% url 'products:category' category.pk %}"
+        class="{% if request.resolver_match.kwargs.pk == category.pk %}
+            active
+            {% endif %}"
+            >
+        {{ category.name }}
+    </a>
+{% endfor %}
