@@ -1,6 +1,8 @@
 from django.db import models          # import added to allow actions with data bases as follows
 
 # Create your models here.
+
+
 class ProductCategory(models.Model):
     class Meta:
         verbose_name = 'Категория'
@@ -11,6 +13,7 @@ class ProductCategory(models.Model):
 
     def __str__(self):
         return self.name
+
 
 class Product(models.Model):
     class Meta:

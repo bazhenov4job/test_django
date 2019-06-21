@@ -1,8 +1,14 @@
 {% extends 'mainapp/base.html' %}
 {% block content2 %}
 {% for product in products %}
+<div class="product">
     <h1>{{ product.name }}</h1>
     <h2>{{ product.category.name }}</h2>
     <h3>{{ product.description }}</h3>
+    <img src={{ product.image }} alt={{ product.name }}>
+    <br>
+    <a href="#">Add to cart</a><br>
+    <a href="#">Remove from cart</a>
+</div>
 {% endfor %}
 {% endblock %}
