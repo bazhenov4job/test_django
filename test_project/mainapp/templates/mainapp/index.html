@@ -8,7 +8,11 @@
 </head>
 <body>
     {% block content2 %}
-        <p>Привет, {{ username }}!</p>
+        {% if request.user.is_authenticated %}
+            <h2>Hello, {{ request.user.username|title  }}!</h2>
+        {% else %}
+            <h2>Hello, guest!</h2>
+        {% endif %}
         <p>{{ array.0 }}, {{ array.1 }}, {{ array.2 }}</p>
         {% for x in array %}
         <p>{{ x }}</p>

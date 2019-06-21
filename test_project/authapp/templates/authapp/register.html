@@ -1,0 +1,14 @@
+{% extends 'authapp/base.html' %}
+{% load staticfiles %}
+
+{% block content %}
+    <form class="form-horizantal" method="POST">
+        {% csrf_token %}
+        <!--Далее идёт функция as_p, которая развернёт фрму регистрации в соответствии с
+         шаблоном объекта form, который иы создали в forms.py, прокинули во views и, обработав передали
+         сюда, в .html файл.-->
+        {{ form.as_p }}
+        <br>
+        <input class="form-control" type="submit" >
+    </form>
+{% endblock %}
