@@ -1,5 +1,12 @@
-<ul class="menu">
+<ul class="menu" xmlns:auth="http://www.w3.org/1999/xhtml">
     {% for link in links_menu %}
         <li><a href="{% url link.href %}"> {{ link.name|title }}</a></li>
     {% endfor %}
 </ul>
+<div class="clearboth"></div>
+{% if user.is_authenticated %}
+    <a class="authorise" href="{% url 'auth:logout' %}">Выйти</a>
+{% else %}
+    <a class="authorise" href="{% url 'auth:login' %}">Авторизация</a>
+    <a class="authorise" href="{% url 'auth:register' %}">Регистрация</a>
+{% endif %}
