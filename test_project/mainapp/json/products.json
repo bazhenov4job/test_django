@@ -4,24 +4,27 @@
     "name": "Поло",
     "price": "1500",
     "quantity": "10",
-    "image": "img/shirt_polo.jpg"
+    "image": "media/shirt_polo.jpg"
   },
   {
     "category": "Футболки",
     "name": "Слимфит",
     "price": "1000",
-    "quantity": "10"
+    "quantity": "10",
+    "image": "media/shirt_slim.jpg"
   },
   {
     "category": "Платья",
     "name": "Платье вечернее",
     "price": "4999",
-    "quantity": "5"
+    "quantity": "5",
+    "image": "media/drees_ev.jpg"
   },
   {
     "category": "Платья",
     "name": "Платье коктейльное",
     "price": "2999",
-    "quantity": "5"
+    "quantity": "5",
+    "image": "media/dress_cocktail.jpeg"
   }
 ]
