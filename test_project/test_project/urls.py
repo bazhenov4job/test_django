@@ -26,6 +26,7 @@ urlpatterns = [
     path('contacts/', mainapp.contacts, name='contacts'),
     path('admin/', admin.site.urls),
     path('auth/', include('authapp.urls', namespace='auth')),
+    path('basket/', include('basketapp.urls', namespace='basket')),
 ]
 
 # following string is added to spread media files

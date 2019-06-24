@@ -11,6 +11,7 @@ from django.urls import reverse, reverse_lazy
 
 # Create your views here.
 
+
 def login(request):
     title = 'вход'
 
