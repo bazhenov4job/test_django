@@ -1,6 +1,7 @@
 from django.shortcuts import render, get_object_or_404
 import json, os
 from mainapp.models import Product, ProductCategory
+from basketapp.models import Basket
 
 # Create your views here.
 
@@ -19,6 +20,10 @@ def main(request):
 
 
 def products(request, pk=None):
+    basket = []
+    if request.user.is_authenticated:
+        basket = Basket.objects.filter(user=request.user)
+
 
     links_menu = loadMenuFromJSON()
 
@@ -27,13 +32,18 @@ def products(request, pk=None):
     # import object product to connect it to the template
 
     if pk:
-        category = get_object_or_404(ProductCategory, pk=pk)
-        products = products.filter(category__pk=pk)
+        if pk == '0':
+            products = Product.objects.all().order_by('price')
+            category = {'name': 'все'}
+        else:
+            category = get_object_or_404(ProductCategory, pk=pk)
+            products = products.filter(category__pk=pk)
 
     context = {'links_menu': links_menu,
                "title": "продукты",
                "products": products,
                'categories': ProductCategory.objects.all(),
+               'basket': basket,
                }
     return render(request, 'mainapp/products.html', context)
 

@@ -43,3 +43,10 @@ margin-left: 30px;
 text-decoration: none;
 color: red;
 }
+
+.basket {
+display: block;
+margin-top: 20px;
+font-size: 20 px;
+color: #202020;
+}

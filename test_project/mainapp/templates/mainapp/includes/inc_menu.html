@@ -10,3 +10,11 @@
     <a class="authorise" href="{% url 'auth:login' %}">Авторизация</a>
     <a class="authorise" href="{% url 'auth:register' %}">Регистрация</a>
 {% endif %}
+<div class="clearboth"></div>
+<a href="{% url 'basket:view' %}" class="basket">
+    <span>
+        Товаров в корзине:
+        {% if basket %} {{ basket|length }} {% endif %}
+    </span>
+</a>
+
