@@ -10,7 +10,8 @@ def basket(request):
     products = []
     for item in basket:
         products.append(item.product)
-    content = {"basket": products}
+    content = {"basket": products,
+               "title": "корзина"}
     return render(request, 'basketapp/basket.html', content)
 
 

@@ -1,5 +1,22 @@
 {% load staticfiles %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset = "utf-8">
+        <title>
+            {% block title %}
+                {{ title|title }}
+            {% endblock %}
+        </title>
+        {% block css %}
+            <linr rel = "stylesheet" type = "text/css" href = "{% static 'css/bootstrap.min.css' %}">
+            <link rel = "stylesheet" type = "text/css" href = "{% static 'css/style.css' %}">
+        {% endblock %}
+        {% block js %}
+        {% endblock %}
+    </head>
 <div class="products">
+    <h1>{{ title|title }}</h1>
         {% for product in basket %}
         <div class="product">
             <h1>{{ product.name }}</h1>
