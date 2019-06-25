@@ -10,8 +10,8 @@
             <h3>{{ product.description }}</h3>
             <img style="height:200px; width:150px;"src="/media/{{ product.image }}" alt="{{ product.name }}">
             <br>
-            <a href="{% url 'basket:add product.pk %}">Add to cart</a><br>
-            <a href="{% url 'basket:remove product.pk %}">Remove from cart</a>
+            <a href="{% url 'basket:add' product.pk %}">Add to cart</a><br>
+            <a href="{% url 'basket:remove' product.pk %}">Remove from cart</a>
         </div>
 {% endfor %}
 </div>

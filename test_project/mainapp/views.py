@@ -30,7 +30,11 @@ def products(request, pk=None):
         category = get_object_or_404(ProductCategory, pk=pk)
         products = products.filter(category__pk=pk)
 
-    context = {'links_menu': links_menu, "title": "продукты", "products": products, 'categories': ProductCategory.objects.all()}
+    context = {'links_menu': links_menu,
+               "title": "продукты",
+               "products": products,
+               'categories': ProductCategory.objects.all(),
+               }
     return render(request, 'mainapp/products.html', context)
 
 
