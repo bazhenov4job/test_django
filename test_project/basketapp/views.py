@@ -6,8 +6,12 @@ from basketapp.models import Basket
 
 
 def basket(request):
-    content = {}
-    return render(request, 'basket/basket.html', content)
+    basket = Basket.objects.all()
+    products = []
+    for item in basket:
+        products.append(item.product)
+    content = {"basket": products}
+    return render(request, 'basketapp/basket.html', content)
 
 
 def basket_add(request, pk):
