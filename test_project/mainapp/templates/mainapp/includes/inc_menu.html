@@ -12,9 +12,14 @@
 {% endif %}
 <div class="clearboth"></div>
 <a href="{% url 'basket:view' %}" class="basket">
-    <span>
+    <p>
         Товаров в корзине:
-        {% if basket %} {{ basket|length }} {% endif %}
-    </span>
+        {% if basket %}
+        <br>
+            {{ basket.0.total_cost|floatformat:0 }} руб
+        <br>
+            {{ basket.0.total_quantity }} шт
+        {% endif %}
+    </p>
 </a>
 
