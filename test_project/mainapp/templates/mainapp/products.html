@@ -15,5 +15,16 @@
         </div>
 {% endfor %}
 </div>
-
+<div class="clearboth"></div>
+<div class="hot_prod">
+    <a href="#"><img src="/media/{{ hot_product.image }}" alt="Горячее предложение!"></a>
+    <h2 style="color: red;">Горячее предложение!</h2>
+    <p>{{ hot_product.name }}</p>
+    <p>{{ hot_product.price }}</p>
+    <a href="{% url 'basket:add' hot_product.pk %}" style="color:red; font-size: 20pt; text-decoration: none;">
+        Заказать
+    </a>
+    <br>
+    <p>{{ hot_product.description }}</p>
+</div>
 {% endblock %}

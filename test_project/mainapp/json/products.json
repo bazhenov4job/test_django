@@ -14,6 +14,20 @@
     "image": "media/shirt_slim.jpg"
   },
   {
+    "category": "Футболки",
+    "name": "Серая",
+    "price": "1000",
+    "quantity": "10",
+    "image": "media/shirt_grey.jpg"
+  },
+  {
+    "category": "Футболки",
+    "name": "Благородная",
+    "price": "1000",
+    "quantity": "10",
+    "image": "media/shirt_noble.jpg"
+  },
+  {
     "category": "Платья",
     "name": "Платье вечернее",
     "price": "4999",
@@ -26,5 +40,19 @@
     "price": "2999",
     "quantity": "5",
     "image": "media/dress_cocktail.jpeg"
+  },
+  {
+    "category": "Платья",
+    "name": "Платье зелёное",
+    "price": "2999",
+    "quantity": "5",
+    "image": "media/dress_green.jpg"
+  },
+  {
+    "category": "Платья",
+    "name": "Платье озорной горох",
+    "price": "2999",
+    "quantity": "5",
+    "image": "media/dress_pee.jpg"
   }
 ]
