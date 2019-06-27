@@ -22,12 +22,11 @@ def main(request):
 
 def product(request, pk):
     title = 'продукт'
-
     content = {
         'title': title,
         'links_menu': loadMenuFromJSON(),
         'product': get_object_or_404(Product, pk=pk),
-        'basket': Basket.objects.filter(user=request.user),
+        'basket': Product.objects.all(),
         'categories': ProductCategory.objects.all()
     }
 

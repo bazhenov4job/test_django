@@ -5,7 +5,7 @@ from django.shortcuts import render
 from django.shortcuts import render, HttpResponseRedirect
 from django.views.generic.edit import UpdateView
 from .models import ShopUser
-from .forms import ShopUserRegisterForm
+from .forms import ShopUserRegisterForm, ShopUserLoginForm
 from django.contrib import auth
 from django.urls import reverse, reverse_lazy
 
@@ -15,14 +15,22 @@ from django.urls import reverse, reverse_lazy
 def login(request):
     title = 'вход'
 
-    if request.method == 'POST':
+    login_form = ShopUserLoginForm(data=request.POST or None)
+
+    next = request.GET['next'] if 'next' in request.GET.keys() else ''
+
+    if request.method == 'POST' and login_form.is_valid():
         username = request.POST.get('username')
         password = request.POST.get('password')
         user = auth.authenticate(username=username, password=password)
+
         if user and user.is_active:
             auth.login(request, user)
-            # Выбрасывает нас обратно на глагне
-            return HttpResponseRedirect(reverse('main'))
+            if 'next' in request.POST.keys():
+                return HttpResponseRedirect(reques.POST['next'])
+            else:
+                # Выбрасывает нас обратно на глагне
+                return HttpResponseRedirect(reverse('main'))
 
 
     """login_form = ShopUserLoginForm(data=request.POST)"""
@@ -35,8 +43,11 @@ def login(request):
             auth.login(request, user)
             return HttpResponseRedirect(reverse('main'))"""
 
-    """content = {'title': title, 'login_form': login_form}"""
-    return render(request, 'authapp/login.html')
+    content = {'title': title,
+               'login_form': login_form,
+               'next': next
+               }
+    return render(request, 'authapp/login.html', content)
 
 
 def logout(request):
