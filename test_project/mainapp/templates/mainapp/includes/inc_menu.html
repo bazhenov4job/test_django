@@ -13,12 +13,14 @@
 <div class="clearboth"></div>
 <a href="{% url 'basket:view' %}" class="basket">
     <p>
-        Товаров в корзине:
         {% if basket %}
+        Товаров в корзине:
         <br>
             {{ basket.0.total_cost|floatformat:0 }} руб
         <br>
             {{ basket.0.total_quantity }} шт
+        {% else %}
+        Корзина пуста
         {% endif %}
     </p>
 </a>
