@@ -32,8 +32,10 @@ def basket(request):
 
 @login_required
 def basket_add(request, pk):
+    print('i was there')
     if 'login' in request.META.get('HTTP_REFERER'):
-        return HttpResponseRedirect(reverse('products:product', args=[pk]))
+        print('back to goods')
+        return HttpResponseRedirect(reverse('mainapp:product', args=[pk]))
 
     product = get_object_or_404(Product, pk=pk)
     old_basket_slot = Basket.objects.filter(user=request.user, product=product).first()
