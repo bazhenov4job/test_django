@@ -20,6 +20,19 @@ def main(request):
     return render(request, 'mainapp/index.html', context)
 
 
+def product(request, pk):
+    title = 'продукты'
+
+    content = {
+        'title': title,
+        'links_menu': ProductCategory.objects.all(),
+        'product': get_object_or_404(Product, pk=pk),
+        'basket': Basket.objects.filter(user=request.user),
+    }
+
+    return render(request, 'mainapp/product.html', content)
+
+
 def products(request, pk=None):
     basket = []
     if request.user.is_authenticated:
