@@ -21,13 +21,14 @@ def main(request):
 
 
 def product(request, pk):
-    title = 'продукты'
+    title = 'продукт'
 
     content = {
         'title': title,
-        'links_menu': ProductCategory.objects.all(),
+        'links_menu': loadMenuFromJSON(),
         'product': get_object_or_404(Product, pk=pk),
         'basket': Basket.objects.filter(user=request.user),
+        'categories': ProductCategory.objects.all()
     }
 
     return render(request, 'mainapp/product.html', content)

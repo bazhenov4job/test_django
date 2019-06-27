@@ -8,7 +8,7 @@
             <h2>{{ product.name }}</h2>
             <h3>{{ product.category.name }}</h3>
             <h4>{{ product.description }}</h4>
-            <img style="height:200px; width:150px;"src="/media/{{ product.image }}" alt="{{ product.name }}">
+            <a href="{% url 'mainapp:product' product.pk %}"><img style="height:200px; width:150px;"src="/media/{{ product.image }}" alt="{{ product.name }}"></a>
             <br>
             <a style="float:left;" href="{% url 'basket:add' product.pk %}">Add to cart</a><br>
             <a style="float:left;" href="{% url 'basket:remove' product.pk %}">Remove from cart</a>
@@ -18,7 +18,7 @@
 </div>
 <div class="clearboth"></div>
 <div class="hot_prod">
-    <a href="#"><img style="height:200px; width:150px; outline: 1px solid red; float: left; margin-right: 30px;" src="/media/{{ hot_product.image }}" alt="Горячее предложение!"></a>
+    <a href="{% url 'mainapp:product' hot_product.pk %}"><img style="height:200px; width:150px; outline: 1px solid red; float: left; margin-right: 30px;" src="/media/{{ hot_product.image }}" alt="Горячее предложение!"></a>
     <h2 style="color: red;">Горячее предложение!</h2>
     <p>{{ hot_product.name }}</p>
     <p>{{ hot_product.price }}</p>
@@ -35,7 +35,7 @@
             <h1>{{ same.name }}</h1>
             <h2>{{ same.category.name }}</h2>
             <h3>{{ same.description }}</h3>
-            <img style="height:200px; width:150px;"src="/media/{{ same.image }}" alt="{{ same.name }}">
+            <a href="{% url 'mainapp:product' same.pk %}"><img style="height:200px; width:150px;"src="/media/{{ same.image }}" alt="{{ same.name }}"></a>
             <br>
             <a href="{% url 'basket:add' same.pk %}">Add to cart</a><br>
             <a href="{% url 'basket:remove' same.pk %}">Remove from cart</a>
