@@ -4,6 +4,8 @@ from basketapp.models import Basket
 import json, os
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse
+from django.template.loader import render_to_string
+from django.http import JsonResponse
 
 
 # Create your views here.
@@ -32,9 +34,8 @@ def basket(request):
 
 @login_required
 def basket_add(request, pk):
-    print('i was there')
+
     if 'login' in request.META.get('HTTP_REFERER'):
-        print('back to goods')
         return HttpResponseRedirect(reverse('mainapp:product', args=[pk]))
 
     product = get_object_or_404(Product, pk=pk)
@@ -53,7 +54,6 @@ def basket_add(request, pk):
 @login_required
 def basket_remove(request, pk):
     product = get_object_or_404(Product, pk=pk)
-    print(product.pk)
     basket_slot = Basket.objects.filter(user=request.user, product=product).first()
 
     if basket_slot:
@@ -67,3 +67,25 @@ def basket_remove(request, pk):
 
     return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
+
+@login_required
+def basket_edit(request, pk, quantity):
+    if request.is_ajax():
+        quantity = int(quantity)
+        new_basket_item = Basket.objects.get(pk=int(pk))
+
+        if quantity > 0:
+            new_basket_item.quantity = quantity
+            new_basket_item.save()
+        else:
+            new_basket_item.delete()
+
+        basket_items = Basket.objects.filter(user=request.user).order_by('product__category')
+
+        content = {
+            'basket_items': basket_items,
+        }
+
+        result = render_to_string('basketapp/basket.html', content)
+
+        return JsonResponse({'result': result})

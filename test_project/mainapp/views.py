@@ -39,7 +39,6 @@ def products(request, pk=None):
         # adds to basket var objects inherent to user that is logged and requesting page
         basket = Basket.objects.filter(user=request.user)
 
-
     links_menu = loadMenuFromJSON()
 
     products = Product.objects.all()
@@ -80,10 +79,11 @@ def get_basket(user):
     else:
         return []
 
+
 def get_hot_product():
     products = Product.objects.all()
-    print(random.sample(list(products), 2))
     return random.sample(list(products), 2)[0]
+
 
 def get_same_products(hot_product):
     same_products = Product.objects.filter(category=hot_product.category).exclude(pk=hot_product.pk)[:2]
