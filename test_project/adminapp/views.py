@@ -50,3 +50,26 @@ class ProductDetailView(IsSuperUserView, DetailView):
         context['title'] = 'Админка. Продукт.'
         return context
 
+
+class ProductCreateView(CreateView):
+    model = Product
+    template_name = 'adminapp/product_update.html'
+    success_url = reverse_lazy('admin_custom:products')
+    fields = '__all__'
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super(ProductCreateView, self).get_context_data(**kwargs)
+        context['title'] = 'Админка. Новый продукт.'
+        return context
+
+
+class ProductDeleteView(DeleteView):
+    model = Product
+    template_name = 'adminapp/product_delete.html'
+    success_url = reverse_lazy('admin_custom:products')
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super(ProductDeleteView, self).get_context_data(**kwargs)
+        object_name = Product.objects.filter(pk=self.kwargs.get('pk'))
+        context['title'] = 'Админка. Удаление продукта {}.'.format(object_name)
+        return context
