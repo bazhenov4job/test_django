@@ -1,4 +1,4 @@
-from django.shortcuts import get_object_or_404
+from django.shortcuts import get_object_or_404, render
 from django.contrib.auth.mixins import UserPassesTestMixin
 from django.urls import reverse_lazy
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
@@ -8,6 +8,11 @@ from mainapp.models import ProductCategory, Product
 from authapp.models import ShopUser
 
 # Create your views here.
+
+def main(request):
+    title = 'Adminka'
+    context = {'title': title}
+    return render(request, 'adminapp/adminka.html', context)
 
 
 class IsSuperUserView(UserPassesTestMixin):

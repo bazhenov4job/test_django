@@ -8,6 +8,7 @@ from django.conf.urls import include
 app_name = 'adminapp'
 
 urlpatterns = [
+    path('', adminapp.main, name='main'),
     path('users/create/', adminapp.UserCreateView.as_view(), name='user_create'),
     path('users/read/', adminapp.UserListView.as_view(), name='users'),
     path('users/update/<int:pk>/', adminapp.UserUpdateView.as_view(), name='user_update'),

@@ -2,6 +2,9 @@
     {% for link in links_menu %}
         <li><a href="{% url link.href %}"> {{ link.name|title }}</a></li>
     {% endfor %}
+    {% if user.is_superuser %}
+        <li><a href="{% url 'admin_custom:main' %}">Админка</a></li>
+    {% endif %}
 </ul>
 <div class="clearboth"></div>
 {% if user.is_authenticated %}
