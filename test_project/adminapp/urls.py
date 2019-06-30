@@ -10,7 +10,7 @@ app_name = 'adminapp'
 urlpatterns = [
     path('users/create/', adminapp.UserCreateView.as_view(), name='user_create'),
     path('users/read/', adminapp.UserListView.as_view(), name='users'),
-    # path('users/update/<int:pk>/', adminapp.user_update, name='user_update'),
+    path('users/update/<int:pk>/', adminapp.UserUpdateView.as_view(), name='user_update'),
     path('users/delete/<int:pk>/', adminapp.UserDeleteView.as_view(), name='user_delete'),
     #
     path('categories/update/', adminapp.CategoryCreateView.as_view(), name='category_update'),

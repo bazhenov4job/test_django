@@ -11,7 +11,7 @@
     <a href="{% url 'admin_custom:user_create' %}">Создать нового пользователя</a>
 <ul>
     {% for object in object_list %}
-    <li><a href="#" class="{% if object.is_active %}
+    <li><a href="{% url 'admin_custom:user_update' object.pk %}" class="{% if object.is_active %}
                 active
                 {% else %}
                 passive
