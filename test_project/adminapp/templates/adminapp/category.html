@@ -3,15 +3,17 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>{{ title }}</title>
-    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" type="text/css">
+    <title>{{ object.name|title }}. {{ title }}</title>
+    <link rel="stylesheet" href="{% static 'css/style.css'%}" type="text/css">
 </head>
 <body>
+    <h1>{{ object.name }}</h1>
     <h2>{{ title }}</h2>
     <form class="form-horizontal" method="post">
         {% csrf_token %}
         {{ form.as_p }}
         <input type="submit" value="Применить">
     </form>
+    <a href="{% url 'admin_custom:categories' %}">Ко всем категориям</a>
 </body>
 </html>

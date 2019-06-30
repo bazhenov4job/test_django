@@ -70,6 +70,70 @@ class ProductDeleteView(DeleteView):
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super(ProductDeleteView, self).get_context_data(**kwargs)
-        object_name = Product.objects.filter(pk=self.kwargs.get('pk'))
+        object_name = Product.objects.get(pk=self.kwargs.get('pk')).name
         context['title'] = 'Админка. Удаление продукта {}.'.format(object_name)
+        return context
+
+
+class ProductUpdateView(UpdateView):
+    model = Product
+    template_name = 'adminapp/product_update.html'
+    success_url = reverse_lazy('admin_custom:products')
+    fields = '__all__'
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super(ProductUpdateView, self).get_context_data(**kwargs)
+        object_name = Product.objects.get(pk=self.kwargs.get('pk')).name
+        context['title'] = 'Админка. Редактирование {}.'.format(object_name)
+        return context
+
+    def get_success_url(self):
+        return reverse_lazy('admin_custom:product_read', kwargs={'pk': self.kwargs.get('pk')})
+
+
+class CategoryListView(IsSuperUserView, ListView):
+    model = ProductCategory
+    template_name = 'adminapp/categories.html'
+    queryset = ProductCategory.objects.all()
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super(CategoryListView, self).get_context_data(**kwargs)
+        context['title'] = 'Админка. Все категории.'
+        return context
+
+
+class CategoryCreateView(IsSuperUserView, CreateView):
+    model = ProductCategory
+    template_name = 'adminapp/category_update.html'
+    success_url = reverse_lazy('admin_custom:categories')
+    fields = '__all__'
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super(CategoryCreateView, self).get_context_data(**kwargs)
+        context['title'] = 'Админка. Новая категория.'
+        return context
+
+
+class CategoryDeleteView(DeleteView, IsSuperUserView):
+    model = ProductCategory
+    template_name = 'adminapp/category_delete.html'
+    success_url = reverse_lazy('admin_custom:categories')
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super(CategoryDeleteView, self).get_context_data(**kwargs)
+        cat_name = ProductCategory.objects.get(pk=self.kwargs.get('pk')).name
+        context['title'] = 'Админка. Удалить Категорию {}.'.format(cat_name)
+        return context
+
+
+class CategoryUpdateView(UpdateView, IsSuperUserView):
+    model = ProductCategory
+    template_name = 'adminapp/category.html'
+    success_url = reverse_lazy('admin_custom:categories')
+    fields = '__all__'
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super(CategoryUpdateView, self).get_context_data(**kwargs)
+        cat_name = ProductCategory.objects.get(pk=self.kwargs.get('pk')).name
+        context['title'] = 'Админка. Редактируем категорию {}.'.format(cat_name)
         return context

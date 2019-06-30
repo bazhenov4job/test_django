@@ -10,7 +10,10 @@
     <h1>{{ object.name }}</h1>
     <img src="/media/{{ object.image }}" alt="{{ object.name }}">
     <br>
+    <a href="{% url 'admin_custom:product_update' object.pk %}">Редактировать продукт</a>
+    <br>
     <a href="{% url 'admin_custom:product_delete' object.pk %}">Удалить продукт</a>
+    <br>
     <a href="{% url 'admin_custom:products' %}">Ко всем продуктам</a>
 </body>
 </html>
