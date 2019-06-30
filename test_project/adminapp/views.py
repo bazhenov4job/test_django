@@ -27,3 +27,21 @@ class ProductListView(ListView):
         context['title'] = 'Все продукты. Админка.'
         context['categories'] = ProductCategory.objects.all()
         return context
+
+
+class ProductDetailView(DetailView):
+    model = Product
+    template_name = 'adminapp/product.html'
+
+    def get_queryset(self):
+        queryset = super(ProductDetailView, self).get_queryset()
+        if 'pk' in self.kwargs:
+            if self.kwargs['pk']:
+                queryset = queryset.filter(pk=self.kwargs['pk'])
+        return queryset
+
+    """def get_context_data(self, *, object_list=None, **kwargs):
+        context = super(ProductDetailView, self).get_context_data(**kwargs)
+        print(context)
+        return context"""
+
