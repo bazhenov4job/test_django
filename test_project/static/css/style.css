@@ -47,7 +47,12 @@ margin-left: 30px;
 
 .active {
 text-decoration: none;
-color: red;
+color: green;
+}
+
+.passive {
+text-decoration: none;
+color: #c0c0c0
 }
 
 .basket {

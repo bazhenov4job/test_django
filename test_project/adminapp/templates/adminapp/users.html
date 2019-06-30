@@ -1,0 +1,25 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ title }}</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" type="text/css">
+</head>
+<body>
+    <h2>{{ title|title }}</h2>
+    <a href="{% url 'admin_custom:user_create' %}">Создать нового пользователя</a>
+<ul>
+    {% for object in object_list %}
+    <li><a href="#" class="{% if object.is_active %}
+                active
+                {% else %}
+                passive
+                {% endif %}
+        ">{{ object.username }}</a></li>
+    <a href="{% url 'admin_custom:user_delete' object.pk %}">Удалить этого пользователя</a>
+    {% endfor %}
+</ul>
+
+</body>
+</html>

@@ -1,10 +1,11 @@
-from django.shortcuts import render
+from django.shortcuts import get_object_or_404
 from django.contrib.auth.mixins import UserPassesTestMixin
 from django.urls import reverse_lazy
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic import DetailView
 from django.views.generic.list import ListView
 from mainapp.models import ProductCategory, Product
+from authapp.models import ShopUser
 
 # Create your views here.
 
@@ -137,3 +138,47 @@ class CategoryUpdateView(UpdateView, IsSuperUserView):
         cat_name = ProductCategory.objects.get(pk=self.kwargs.get('pk')).name
         context['title'] = 'Админка. Редактируем категорию {}.'.format(cat_name)
         return context
+
+
+class UserListView(ListView):
+    model = ShopUser
+    template_name = 'adminapp/users.html'
+    queryset = ShopUser.objects.all()
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super(UserListView, self).get_context_data(**kwargs)
+        context['title'] = 'Пользователи'
+        return context
+
+
+class UserCreateView(CreateView, IsSuperUserView):
+    model = ShopUser
+    template_name = 'adminapp/product_update.html'
+    success_url = reverse_lazy('admin_custom:users')
+    fields = '__all__'
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super(UserCreateView, self).get_context_data(**kwargs)
+        context['title'] = 'Админка. Новый Пользователь.'
+        return context
+
+
+class UserDeleteView(DeleteView, IsSuperUserView):
+    model = ShopUser
+    template_name = 'adminapp/category_delete.html'
+    success_url = reverse_lazy('admin_custom:users')
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super(UserDeleteView, self).get_context_data(**kwargs)
+        user_name = ShopUser.objects.get(pk=self.kwargs.get('pk'))
+        context['title'] = 'Админка. Удалить пользователя {}'.format(user_name.username)
+        return context
+
+    def delete(self, request, *args, **kwargs):
+        user = ShopUser.objects.get(pk=self.kwargs.get('pk'))
+        if request.method == 'POST':
+            user.is_active = False
+            user.save()
+        return user
+
+
