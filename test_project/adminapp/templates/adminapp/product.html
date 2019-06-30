@@ -3,12 +3,13 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>{{ object.name|title }}. {{ title }}</title>
     <link rel="stylesheet" href="{% static 'css/style.css'%}" type="text/css">
 </head>
 <body>
     <h1>{{ object.name }}</h1>
     <img src="/media/{{ object.image }}" alt="{{ object.name }}">
+    <br>
     <a href="{% url 'admin_custom:products' %}">Ко всем продуктам</a>
 </body>
 </html>

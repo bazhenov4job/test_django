@@ -9,7 +9,12 @@ from mainapp.models import ProductCategory, Product
 # Create your views here.
 
 
-class ProductListView(ListView):
+class IsSuperUserView(UserPassesTestMixin):
+    def test_func(self):
+        return self.request.user.is_superuser
+
+
+class ProductListView(IsSuperUserView, ListView):
     model = Product
     template_name = 'adminapp/products.html'
     queryset = Product.objects.all()
@@ -24,12 +29,12 @@ class ProductListView(ListView):
 # тут переопределили стандаптный метод класса ListView, вписав в него новые ключевые слова.
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super(ProductListView, self).get_context_data(**kwargs)
-        context['title'] = 'Все продукты. Админка.'
+        context['title'] = 'Админка. Все продукты.'
         context['categories'] = ProductCategory.objects.all()
         return context
 
 
-class ProductDetailView(DetailView):
+class ProductDetailView(IsSuperUserView, DetailView):
     model = Product
     template_name = 'adminapp/product.html'
 
@@ -40,8 +45,8 @@ class ProductDetailView(DetailView):
                 queryset = queryset.filter(pk=self.kwargs['pk'])
         return queryset
 
-    """def get_context_data(self, *, object_list=None, **kwargs):
+    def get_context_data(self, *, object_list=None, **kwargs):
         context = super(ProductDetailView, self).get_context_data(**kwargs)
-        print(context)
-        return context"""
+        context['title'] = 'Админка. Продукт.'
+        return context
 
