@@ -1,5 +1,5 @@
 <h3 style="margin-left: 40px;">Категории</h3>
-    <a style="margin-left: 30px; text-decoration: none;"href="{% url 'products:category' 0 %}"
+    <a style="margin-left: 30px; text-decoration: none;"href="{% url 'products:category' pk=0 %}"
         class="{% if request.resolver_match.kwargs.pk == 0 %}
             active
             {% endif %}"

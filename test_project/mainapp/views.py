@@ -3,6 +3,7 @@ import json, os
 from mainapp.models import Product, ProductCategory
 from basketapp.models import Basket
 import random
+from django.core.paginator import Paginator, EmptyPage,PageNotAnInteger
 
 # Create your views here.
 
@@ -33,7 +34,8 @@ def product(request, pk):
     return render(request, 'mainapp/product.html', content)
 
 
-def products(request, pk=None):
+def products(request, pk=None, page=1):
+
     basket = []
     if request.user.is_authenticated:
         # adds to basket var objects inherent to user that is logged and requesting page
@@ -43,18 +45,41 @@ def products(request, pk=None):
 
     products = Product.objects.all()
 
-    # import object product to connect it to the template
+    hot_product = get_hot_product()
+    same_products = get_same_products(hot_product)
+    category = ProductCategory.objects.all()
 
-    if pk:
-        if pk == '0':
+    if pk is not None:
+        if pk == 0:
             products = Product.objects.all().order_by('price')
-            category = {'name': 'все'}
+            category = {
+                'pk': 0,
+                'name': 'все'}
         else:
             category = get_object_or_404(ProductCategory, pk=pk)
             products = products.filter(category__pk=pk)
 
-    hot_product = get_hot_product()
-    same_products = get_same_products(hot_product)
+        paginator = Paginator(products, 2)
+
+        try:
+            products_paginator = paginator.page(page)
+        except PageNotAnInteger:
+            products_paginator = paginator.page(1)
+        except EmptyPage:
+            products_paginator = paginator.page(paginator.num_pages)
+
+        context = {'links_menu': links_menu,
+                   "title": "продукты",
+                   "products": products_paginator,
+                   'categories': ProductCategory.objects.all(),
+                   'basket': basket,
+                   'hot_product': hot_product,
+                   'same_products': same_products,
+                   'category': category,
+                   }
+        return render(request, 'mainapp/products.html', context)
+
+    # Закинули лист продуктов, который выводится по 2 экземпляра на страницу
 
     context = {'links_menu': links_menu,
                "title": "продукты",
@@ -63,6 +88,7 @@ def products(request, pk=None):
                'basket': basket,
                'hot_product': hot_product,
                'same_products': same_products,
+               'category': category,
                }
     return render(request, 'mainapp/products.html', context)
 
