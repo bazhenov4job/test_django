@@ -6,6 +6,7 @@ from django.views.generic import DetailView
 from django.views.generic.list import ListView
 from mainapp.models import ProductCategory, Product
 from authapp.models import ShopUser
+from .forms import ProductUpdateForm
 
 # Create your views here.
 
