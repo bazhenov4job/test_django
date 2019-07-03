@@ -31,6 +31,6 @@ class Command(BaseCommand):
             new_product.save()
 
         ShopUser.objects.all().delete()
-        ShopUser.objects.create_superuser('admin', 'admin@geekshop.local', 'admin', age=19)
+        ShopUser.objects.create_superuser('admin', 'admin@geekshop.local', 'admin', age=30)
 
         """super_user = ShopUser.objects.create_superuser('django', 'django@geekshop.local', 'geekbrains', age=33)"""
