@@ -69,6 +69,8 @@ class ProductCreateView(CreateView):
         return context
 
 
+
+
 class ProductDeleteView(DeleteView):
     model = Product
     template_name = 'adminapp/product_delete.html'
