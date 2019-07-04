@@ -1,5 +1,4 @@
 *.pyc
 .idea
 *.sqlite3
-fill_conf.py
-local.conf
+test_project/config/*

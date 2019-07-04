@@ -27,10 +27,10 @@ config.read(local_config_path)
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = config.get('main', 'SECRET_KEY')
+SECRET_KEY = config.get("main", "SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True #config.getboolean('main', 'DEBUG')
+DEBUG = config.getboolean("main", "DEBUG")
 
 ALLOWED_HOSTS = []
 
