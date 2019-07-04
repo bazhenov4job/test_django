@@ -20,7 +20,6 @@ PROJECT_DIR = os.path.dirname(BASE_DIR)
 
 # configuring path to local.congig file to hide secret information
 local_config_path = os.path.join(BASE_DIR, 'config', 'local.conf')
-print(local_config_path)
 config = RawConfigParser()
 config.read(local_config_path)
 
