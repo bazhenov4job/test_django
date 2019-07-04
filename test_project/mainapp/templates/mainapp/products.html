@@ -1,8 +1,63 @@
 {% extends 'mainapp/base.html' %}
 {% block content2 %}
-{% for product in products %}
-    <h1>{{ product.name }}</h1>
-    <h2>{{ product.category.name }}</h2>
-    <h3>{{ product.description }}</h3>
+{% include 'mainapp/includes/inc_category_menu.html' %}
+<div class="product-list">
+    <div class="paginator">
+        {% if products.has_previous %}
+        <a href="{% url 'products:page' category.pk products.previous_page_number %}">
+            <
+        </a>
+        {% endif %}
+        <span class="current">
+            страница {{ products.number }} из
+            {{ products.paginator.num_pages }}
+        </span>
+        {% if products.has_next %}
+        <a href="{% url 'products:page' category.pk products.next_page_number %}">
+            >
+        </a>
+        {% endif %}
+    </div>
+</div>
+<div class="clearboth"></div>
+<div class="products">
+        {% for product in products %}
+        <div class="product">
+            <h2>{{ product.name }}</h2>
+            <h3>{{ product.category.name }}</h3>
+            <h4>{{ product.description }}</h4>
+            <h4>{{ product.price }}</h4>
+            <a href="{% url 'products:product' product.pk %}"><img style="height:200px; width:150px;"src="/media/{{ product.image }}" alt="{{ product.name }}"></a>
+            <br>
+            <a style="float:left;" href="{% url 'basket:add' product.pk %}">Add to cart</a><br>
+            <a style="float:left;" href="{% url 'basket:remove' product.pk %}">Remove from cart</a>
+            <a href="{% url 'basket:view' %}"><img style="width: 50px; height: 50px;" src="/media/media/cart.jpg" alt=""></a>
+        </div>
+{% endfor %}
+</div>
+<div class="clearboth"></div>
+<div class="hot_prod">
+    <a href="{% url 'products:product' hot_product.pk %}"><img style="height:200px; width:150px; outline: 1px solid red; float: left; margin-right: 30px;" src="/media/{{ hot_product.image }}" alt="Горячее предложение!"></a>
+    <h2 style="color: red;">Горячее предложение!</h2>
+    <p>{{ hot_product.name }}</p>
+    <p>{{ hot_product.price }}</p>
+    <a href="{% url 'basket:add' hot_product.pk %}" style="color:red; font-size: 20pt; text-decoration: none;">
+        Заказать
+    </a>
+    <br>
+    <p>{{ hot_product.description }}</p>
+</div>
+<div class="clearboth"></div>
+<h2>Похожие продукты</h2>
+{% for same in same_products %}
+<div class="product">
+            <h1>{{ same.name }}</h1>
+            <h2>{{ same.category.name }}</h2>
+            <h3>{{ same.description }}</h3>
+            <a href="{% url 'products:product' same.pk %}"><img style="height:200px; width:150px;"src="/media/{{ same.image }}" alt="{{ same.name }}"></a>
+            <br>
+            <a href="{% url 'basket:add' same.pk %}">Add to cart</a><br>
+            <a href="{% url 'basket:remove' same.pk %}">Remove from cart</a>
+        </div>
 {% endfor %}
 {% endblock %}

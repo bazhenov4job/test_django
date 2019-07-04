@@ -5,23 +5,30 @@ from django.shortcuts import render
 from django.shortcuts import render, HttpResponseRedirect
 from django.views.generic.edit import UpdateView
 from .models import ShopUser
-from .forms import ShopUserRegisterForm
+from .forms import ShopUserRegisterForm, ShopUserLoginForm
 from django.contrib import auth
 from django.urls import reverse, reverse_lazy
 
 # Create your views here.
 
+
 def login(request):
     title = 'вход'
+
+    next = request.GET['next'] if 'next' in request.GET.keys() else ''
 
     if request.method == 'POST':
         username = request.POST.get('username')
         password = request.POST.get('password')
         user = auth.authenticate(username=username, password=password)
+
         if user and user.is_active:
             auth.login(request, user)
-            # Выбрасывает нас обратно на глагне
-            return HttpResponseRedirect(reverse('main'))
+            if 'next' in request.POST.keys():
+                return HttpResponseRedirect(request.POST['next'])
+            else:
+                # Выбрасывает нас обратно на глагне
+                return HttpResponseRedirect(reverse('main'))
 
 
     """login_form = ShopUserLoginForm(data=request.POST)"""
@@ -34,8 +41,10 @@ def login(request):
             auth.login(request, user)
             return HttpResponseRedirect(reverse('main'))"""
 
-    """content = {'title': title, 'login_form': login_form}"""
-    return render(request, 'authapp/login.html')
+    content = {'title': title,
+               'next': next
+               }
+    return render(request, 'authapp/login.html', content)
 
 
 def logout(request):

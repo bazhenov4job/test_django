@@ -2,6 +2,9 @@
     {% for link in links_menu %}
         <li><a href="{% url link.href %}"> {{ link.name|title }}</a></li>
     {% endfor %}
+    {% if user.is_superuser %}
+        <li><a href="{% url 'admin_custom:main' %}">Админка</a></li>
+    {% endif %}
 </ul>
 <div class="clearboth"></div>
 {% if user.is_authenticated %}
@@ -10,3 +13,18 @@
     <a class="authorise" href="{% url 'auth:login' %}">Авторизация</a>
     <a class="authorise" href="{% url 'auth:register' %}">Регистрация</a>
 {% endif %}
+<div class="clearboth"></div>
+<a href="{% url 'basket:view' %}" class="basket">
+    <p>
+        {% if basket %}
+        Товаров в корзине:
+        <br>
+            {{ basket.0.total_cost|floatformat:0 }} руб
+        <br>
+            {{ basket.0.total_quantity }} шт
+        {% else %}
+        Корзина пуста
+        {% endif %}
+    </p>
+</a>
+

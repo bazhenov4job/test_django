@@ -26,10 +26,11 @@ urlpatterns = [
     path('contacts/', mainapp.contacts, name='contacts'),
     path('admin/', admin.site.urls),
     path('auth/', include('authapp.urls', namespace='auth')),
+    path('basket/', include('basketapp.urls', namespace='basket')),
+    path('admin_custom/', include('adminapp.urls', namespace='admin_custom')),
 ]
 
 # following string is added to spread media files
 
 if settings.DEBUG:
-    urlpatterns += static(settings.MEDIA_URL,
-                          document_root=settings.MEDIA_ROOT)
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

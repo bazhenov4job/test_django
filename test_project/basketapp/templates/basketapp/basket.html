@@ -1,0 +1,35 @@
+{% include 'mainapp/includes/inc_menu.html' %}
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset = "utf-8">
+        <title>
+            {% block title %}
+                {{ title|title }}
+            {% endblock %}
+        </title>
+        {% block css %}
+            <linr rel = "stylesheet" type = "text/css" href = "{% static 'css/bootstrap.min.css' %}">
+            <link rel = "stylesheet" type = "text/css" href = "{% static 'css/style.css' %}">
+        {% endblock %}
+        {% block js %}
+                <script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
+                <script src="{% static 'js/basket_scripts.js' %}"></script>
+        {% endblock %}
+    </head>
+<div class="basket-list">
+    <h1>{{ title|title }}</h1>
+        {% for product in products %}
+        <div class="product">
+            <h1>{{ product.name }}</h1>
+            <h2>{{ product.category.name }}</h2>
+            <h3>{{ product.description }}</h3>
+            <img style="height:200px; width:150px;"src="/media/{{ product.image }}" alt="{{ product.name }}">
+            <br>
+            <a href="{% url 'basket:add' product.pk %}">Add more to cart</a><br>
+            <a href="{% url 'basket:remove' product.pk %}">Remove from cart</a>
+            <input type="number" name="{{ product.pk }}" min="0" value="{{ item.quantity }}">
+        </div>
+{% endfor %}
+</div>

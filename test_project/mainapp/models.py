@@ -1,6 +1,8 @@
 from django.db import models          # import added to allow actions with data bases as follows
 
 # Create your models here.
+
+
 class ProductCategory(models.Model):
     class Meta:
         verbose_name = 'Категория'
@@ -11,6 +13,7 @@ class ProductCategory(models.Model):
 
     def __str__(self):
         return self.name
+
 
 class Product(models.Model):
     class Meta:
@@ -24,6 +27,7 @@ class Product(models.Model):
     description = models.TextField(verbose_name="подробно", blank=True)
     price = models.DecimalField(verbose_name="цена продукта", max_digits=8, decimal_places=2, default=0)
     quantity = models.PositiveIntegerField(verbose_name="количество на складе", default=0)
+    hot_product = models.BooleanField(verbose_name='горячее предложение', default=False)
 
     def __str__(self):
         return "{} ({})".format(self.name, self.category.name)
