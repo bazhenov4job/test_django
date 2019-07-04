@@ -1,4 +1,5 @@
 *.pyc
 .idea
 *.sqlite3
-.conf
+fill_conf.py
+local.conf
